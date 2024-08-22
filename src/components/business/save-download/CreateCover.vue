@@ -97,7 +97,8 @@ async function checkFonts() {
   widgets.forEach((item: any) => {
     if (item.fontClass && item.fontClass.value) {
       const loader = new FontFaceObserver(item.fontClass.value)
-      fontLoaders.push(loader.load(null, 120000)) // 延长超时让检测不会丢失字体
+      fontLoaders.push(loader.load(null, 120000).then(() => {
+      })) // 延长超时让检测不会丢失字体
     }
   })
   await Promise.all(fontLoaders)
